@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Archivo', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --color-background: #eef2f7;
+  --color-foreground: #0f1b2d;
+  --color-card: #ffffff;
+  --color-muted: #f1f5f9;
+  --color-muted-foreground: #5a6b82;
+  --color-border: #dbe3ee;
+
+  --color-navy: #10294f;
+  --color-navy-700: #17376a;
+  --color-navy-600: #1e4585;
+  --color-accent: #1e63d0;
+  --color-accent-soft: #e7effc;
+
+  --color-success: #0f7a48;
+  --color-success-soft: #e3f5ec;
+  --color-warning: #b5710a;
+  --color-warning-soft: #fbf0dc;
+  --color-danger: #c0332f;
+  --color-danger-soft: #fbe8e7;
+}
+
+/* Dark theme — re-maps the semantic design tokens. Because the whole UI is
+   token-driven (bg-card, text-foreground, border-border, …) overriding the
+   variables here themes every screen at once. */
+.dark {
+  color-scheme: dark;
+  --color-background: #0a1524;
+  --color-foreground: #e7eefa;
+  --color-card: #10203a;
+  --color-muted: #17293f;
+  --color-muted-foreground: #93a6c2;
+  --color-border: #22344f;
+
+  --color-accent: #4d8ef0;
+  --color-accent-soft: #16273f;
+
+  --color-success: #43c088;
+  --color-success-soft: #10281d;
+  --color-warning: #e0a13c;
+  --color-warning-soft: #2a2110;
+  --color-danger: #ec6a65;
+  --color-danger-soft: #2b1413;
+}
+
+/* Navy doubles as a surface (sidebar, primary buttons, login panel) AND as an
+   emphasis text color. Keep the navy surfaces intact in dark mode, but flip the
+   `text-navy` usages to a readable light tone so headings stay visible. */
+.dark .text-navy,
+.dark .hover\:text-navy:hover {
+  color: var(--color-foreground);
+}
+
+/* Compact tables preference — tightens cell padding app-wide. */
+.compact table th,
+.compact table td {
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: var(--color-foreground);
+    background: var(--color-background);
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    margin: 0;
+  }
+  ::selection {
+    background: var(--color-accent);
+    color: #fff;
+  }
+}
+
+/* Hide scrollbars until scrolling */
+@layer utilities {
+  .scroll-area {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+  .scroll-area:hover {
+    scrollbar-color: #c2cddd transparent;
+  }
+  .scroll-area::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scroll-area::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 999px;
+  }
+  .scroll-area:hover::-webkit-scrollbar-thumb {
+    background: #c2cddd;
+  }
+}
+
+@keyframes egr-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-in {
+  animation: egr-in 0.24s ease-out both;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.animate-toast {
+  animation: toast-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+}

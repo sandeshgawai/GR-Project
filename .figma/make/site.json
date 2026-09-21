@@ -1,0 +1,10 @@
+{
+  "description": "Create and customize designs effortlessly with an intuitive interface that empowers users to bring their creative ideas to life quickly and professionally.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

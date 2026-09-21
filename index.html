@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="<!-- figma:lang -->">
+  <head>
+    <!-- figma:head-start -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><!-- figma:title --></title>
+    <!-- figma:head-end -->
+    <script>
+      // Apply the saved theme before first paint to avoid a flash of light mode.
+      (function () {
+        try {
+          var raw = localStorage.getItem("egr-prefs-v1");
+          var theme = raw ? JSON.parse(raw).theme : "Light";
+          var dark =
+            theme === "Dark" ||
+            (theme === "System" &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches);
+          document.documentElement.classList.toggle("dark", !!dark);
+        } catch (e) {
+          /* ignore */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- figma:body-start -->
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <!-- figma:body-end -->
+  </body>
+</html>
